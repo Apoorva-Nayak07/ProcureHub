@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Serene Nature Tones palette ── */
+  --moss:        #6B7F5E;   /* deep sage / moss green          */
+  --fern:        #8CA67A;   /* mid fern green                  */
+  --sage:        #B2C4A8;   /* soft sage                       */
+  --mist:        #D6E5CE;   /* misty celadon                   */
+  --dew:         #EBF3E5;   /* lightest dew green              */
+  --stone:       #8C7B6E;   /* warm clay / stone               */
+  --pebble:      #C5B6A8;   /* soft pebble                     */
+  --sand:        #E8DECE;   /* warm sand cream                 */
+  --cream:       #F6F1EA;   /* page background cream           */
+  --bark:        #4A3D30;   /* deep bark brown – primary text  */
+  --twig:        #7A6654;   /* muted twig – secondary text     */
+  --leaf-gold:   #A8934A;   /* amber leaf accent               */
+
+  /* ── Semantic aliases ── */
+  --primary:       var(--moss);
+  --primary-dark:  #516349;
+  --primary-light: var(--sage);
+  --accent:        var(--fern);
+
+  --bg:           var(--cream);
+  --bg-alt:       var(--dew);
+
+  --sidebar-bg:     #2E3528;   /* dark forest green             */
+  --sidebar-hover:  #3A4432;
+  --sidebar-active: var(--moss);
+
+  --text:         var(--bark);
+  --text-muted:   var(--twig);
+  --text-light:   var(--pebble);
+
+  --border:       var(--sage);
+  --border-light: var(--mist);
+  --white:        #FFFFFF;
+
+  --success:      #5A8A4A;
+  --success-bg:   #E4EFE0;
+  --danger:       #A0514C;
+  --danger-bg:    #F5E4E3;
+  --warning:      var(--leaf-gold);
+  --warning-bg:   #F4EDD8;
+  --info:         #4E7A8A;
+  --info-bg:      #DDF0E5;
+
+  --radius:    10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --shadow-sm: 0 1px 3px rgba(74,61,48,0.08);
+  --shadow:    0 4px 16px rgba(74,61,48,0.10);
+  --shadow-md: 0 8px 32px rgba(74,61,48,0.14);
+  --shadow-lg: 0 16px 48px rgba(74,61,48,0.18);
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+button  { cursor: pointer; font-family: inherit; transition: all var(--transition); }
+input, select, textarea { font-family: inherit; transition: all var(--transition); }
+a { text-decoration: none; color: inherit; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 99px; }
+
+/* ── Keyframes ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ── Utility animation classes ── */
+.anim-fade    { animation: fadeIn var(--transition) both; }
+.anim-scale   { animation: scaleIn 0.28s cubic-bezier(0.4,0,0.2,1) both; }
+.anim-slide   { animation: slideDown 0.25s ease both; }
+
+/* ── Skeleton shimmer ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--border-light) 25%, var(--bg-alt) 50%, var(--border-light) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: var(--radius);
+}
+
+/* ── Button base ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--moss) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(107,127,94,0.30);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(107,127,94,0.40);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--moss);
+  border: 1.5px solid var(--moss);
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+}
+.btn-ghost:hover { background: var(--dew); }
+
+/* ── Card ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+  animation: fadeIn 0.3s ease both;
+}
+
+/* ── Input ── */
+.input-base {
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  outline: none;
+  background: var(--white);
+  color: var(--text);
+  width: 100%;
+}
+.input-base:focus {
+  border-color: var(--moss);
+  box-shadow: 0 0 0 3px rgba(107,127,94,0.15);
+}
+
+/* ── Table row hover ── */
+.trow:hover { background: var(--dew); }
+
+/* ── Spinner ── */
+.spinner {
+  width: 20px; height: 20px;
+  border: 2.5px solid rgba(107,127,94,0.2);
+  border-top-color: var(--moss);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
